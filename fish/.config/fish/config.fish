@@ -2,16 +2,39 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-alias vim "nvim"
-alias compose "docker-compose"
+set -gx PATH $PATH /opt/nvim-linux64/bin
 
-fish_add_path /opt/rocm/bin/
-set --universal nvm_default_version v18.18.2
+set --universal nvm_default_version lts/hydrogen
 set --universal nvm_default_packages yarn
 
-set -gx FLYCTL_INSTALL "/home/meerzulee/.fly"
-set -gx PATH "$FLYCTL_INSTALL/bin:$PATH"
+alias c="code ." 
+alias cc="clear" 
+alias compose="docker compose"
 
+alias vim="nvim"
+
+alias ls="exa"
+
+alias ll="exa -lh"
+
+
+
+
+fish_ssh_agent
+
+set -gx WARP_ENABLE_WAYLAND 1
+set -gx MESA_D3D12_DEFAULT_ADAPTER_NAME "AMD"
+set -gx BROWSER google-chrome
+
+set -Ua fish_user_paths /home/meerzulee/bin  
+set -Ua fish_user_paths /home/meerzulee/.local/bin
+
+
+#fish_greeting fortune | cowsay
+
+zoxide init --cmd cd fish | source
+
+oh-my-posh init fish --config ~/.config/posh-themes/emodipt-extend.omp.json | source
 
 # pnpm
 set -gx PNPM_HOME "/home/meerzulee/.local/share/pnpm"
@@ -20,9 +43,4 @@ if not string match -q -- $PNPM_HOME $PATH
 end
 # pnpm end
 
-set -Ux AWS_PROFILE "default" 
-fish_add_path "/home/meerzulee/Workspace/Android/platform-tools"
-
-pyenv init - | source
-set -gx PATH $PATH /home/meerzulee/Workspace/Android/emulator
-
+rvm default
