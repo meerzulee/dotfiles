@@ -17,6 +17,8 @@ fish_ssh_agent
 set -gx WARP_ENABLE_WAYLAND 1
 set -gx MESA_D3D12_DEFAULT_ADAPTER_NAME "AMD"
 set -gx BROWSER google-chrome
+set -gx DOCKER_HOST unix://$XDG_RUNTIME_DIR/docker.sock
+
 
 set -gx ANDROID_HOME /home/meerzulee/android/sdk
 set -gx JAVA_HOME /usr/lib/jvm/java-21-openjdk
@@ -24,7 +26,10 @@ set -gx JAVA_HOME /usr/lib/jvm/java-21-openjdk
 set -Ua fish_user_paths /home/meerzulee/bin  
 set -Ua fish_user_paths /home/meerzulee/.local/bin
 
+set -Ua fish_user_paths /home/meerzulee/.turso  
+
 set -Ua fish_user_paths $ANDROID_HOME/cmdline-tools/latest/bin
+set -Ua fish_user_paths $ANDROID_HOME/platform-tools
 #fish_greeting fortune | cowsay
 
 zoxide init --cmd cd fish | source
