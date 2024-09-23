@@ -2,7 +2,7 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-set --universal nvm_default_version lts/hydrogen
+set --universal nvm_default_version lts/iron
 set --universal nvm_default_packages yarn
 
 alias c="code ." 
@@ -27,6 +27,7 @@ set -Ua fish_user_paths /home/meerzulee/bin
 set -Ua fish_user_paths /home/meerzulee/.local/bin
 
 set -Ua fish_user_paths /home/meerzulee/.turso  
+set -Ua fish_user_paths /home/meerzulee/.bun/bin
 
 set -Ua fish_user_paths $ANDROID_HOME/cmdline-tools/latest/bin
 set -Ua fish_user_paths $ANDROID_HOME/platform-tools
