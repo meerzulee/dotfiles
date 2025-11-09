@@ -1,8 +1,0 @@
-[user]
-	name = Meerzulee
-	email = 17146298+meerzulee@users.noreply.github.com
-[credential]
-	helper = !aws codecommit credential-helper $@
-	UseHttpPath = true
-[safe]
-	directory = /home/meerzulee/.cache/yay/auto-cpufreq/src/opt/auto-cpufreq/
