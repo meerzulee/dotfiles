@@ -1,0 +1,158 @@
+binds {
+
+    // ────────────── Keybindings ──────────────
+    // https://github.com/YaLTeR/niri/wiki/Configuration:-Key-Bindings
+    //
+    // HYPER = Capslock (via keyd) -> Ctrl+Alt+Super together.
+    // In niri syntax that chord is written as:  Ctrl+Alt+Mod+<key>
+    //
+    // Mod+Ctrl+<key> binds (move column/window) cannot use Hyper: the Ctrl
+    // is already baked into Hyper, so Hyper+Ctrl == Hyper. Those binds stay
+    // on the physical Super key (Super+Ctrl+<key>).
+
+    Ctrl+Alt+Mod+Shift+Escape            { show-hotkey-overlay; }
+
+    // ─── Applications ───
+    Ctrl+Alt+Mod+Return                  hotkey-overlay-title="Open Terminal: Alacritty" { spawn "alacritty"; }
+    Ctrl+Alt+Mod+Shift+Return            hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Alt+Space                            hotkey-overlay-title="Open App Launcher: noctalia launcher" { spawn-sh "qs -c noctalia-shell ipc call launcher toggle"; }
+    Ctrl+Alt+Mod+B                       hotkey-overlay-title="Open Browser: Brave" { spawn "brave"; }
+    Ctrl+Alt+Mod+G                       hotkey-overlay-title="Open Telegram" { spawn "telegram-desktop"; }
+    Ctrl+Alt+Mod+Shift+L                 hotkey-overlay-title="Lock Screen: noctalia lock" { spawn-sh "qs -c noctalia-shell ipc call lockScreen lock"; }
+    Ctrl+Alt+Mod+Shift+Q                 hotkey-overlay-title="Session Menu: noctalia sessionMenu" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+    Ctrl+Alt+Mod+E                       hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
+
+    // SSH jumbo (Hyper+Shift+J — Hyper+J is taken by focus-window-down)
+    Ctrl+Alt+Mod+Shift+J                 hotkey-overlay-title="SSH: jumbo" { spawn "alacritty" "-e" "ssh" "jumbo"; }
+
+    // ─── Copy / Paste ───
+    Ctrl+Alt+Mod+C                       { spawn "wtype" "-M" "ctrl" "-k" "c"; }
+    Ctrl+Alt+Mod+V                       { spawn "wtype" "-M" "ctrl" "-k" "v"; }
+
+    // ─── Media Controls ───
+    XF86AudioRaiseVolume                 allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
+    XF86AudioLowerVolume                 allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume decrease"; }
+    XF86AudioMute                        allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteOutput"; }
+    XF86AudioMicMute                     allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume muteInput"; }
+    XF86AudioNext                        allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media next"; }
+    XF86AudioPrev                        allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media previous"; }
+    XF86AudioPlay                        allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media playPause"; }
+    XF86AudioPause                       allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call media playPause"; }
+
+    // ─── Brightness Controls ───
+    XF86MonBrightnessUp                  allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call brightness increase"; }
+    XF86MonBrightnessDown                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call brightness decrease"; }
+
+    // ─── Window Focus ───
+    Ctrl+Alt+Mod+Q                       { close-window; }
+
+    Ctrl+Alt+Mod+Left                    { focus-column-left; }
+    Ctrl+Alt+Mod+H                       { focus-column-left; }
+    Ctrl+Alt+Mod+Right                   { focus-column-right; }
+    Ctrl+Alt+Mod+L                       { focus-column-right; }
+    Ctrl+Alt+Mod+Up                      { focus-window-up; }
+    Ctrl+Alt+Mod+K                       { focus-window-up; }
+    Ctrl+Alt+Mod+Down                    { focus-window-down; }
+    Ctrl+Alt+Mod+J                       { focus-window-down; }
+
+    // ─── Window Move (stays on physical Super+Ctrl — Hyper can't stack Ctrl) ───
+    Mod+Ctrl+Left                        { move-column-left; }
+    Mod+Ctrl+H                           { move-column-left; }
+    Mod+Ctrl+Right                       { move-column-right; }
+    Mod+Ctrl+L                           { move-column-right; }
+    Mod+Ctrl+Up                          { move-window-up; }
+    Mod+Ctrl+K                           { move-window-up; }
+    Mod+Ctrl+Down                        { move-window-down; }
+    Mod+Ctrl+J                           { move-window-down; }
+
+    Ctrl+Alt+Mod+Home                    { focus-column-first; }
+    Ctrl+Alt+Mod+End                     { focus-column-last; }
+    Mod+Ctrl+Home                        { move-column-to-first; }
+    Mod+Ctrl+End                         { move-column-to-last; }
+
+    // ─── Monitor Focus / Move ───
+    Ctrl+Alt+Mod+Shift+Left              { focus-monitor-left; }
+    Ctrl+Alt+Mod+Shift+Right             { focus-monitor-right; }
+    Ctrl+Alt+Mod+Shift+Up                { focus-monitor-up; }
+    Ctrl+Alt+Mod+Shift+Down              { focus-monitor-down; }
+
+    Mod+Shift+Ctrl+Left                  { move-column-to-monitor-left; }
+    Mod+Shift+Ctrl+Right                 { move-column-to-monitor-right; }
+    Mod+Shift+Ctrl+Up                    { move-column-to-monitor-up; }
+    Mod+Shift+Ctrl+Down                  { move-column-to-monitor-down; }
+
+    // ─── Workspace Switch / Move ───
+    Ctrl+Alt+Mod+WheelScrollDown         cooldown-ms=150 { focus-workspace-down; }
+    Ctrl+Alt+Mod+WheelScrollUp           cooldown-ms=150 { focus-workspace-up; }
+    Mod+Ctrl+WheelScrollDown             cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+WheelScrollUp               cooldown-ms=150 { move-column-to-workspace-up; }
+
+    Ctrl+Alt+Mod+WheelScrollRight        { focus-column-right; }
+    Ctrl+Alt+Mod+WheelScrollLeft         { focus-column-left; }
+    Mod+Ctrl+WheelScrollRight            { move-column-right; }
+    Mod+Ctrl+WheelScrollLeft             { move-column-left; }
+
+    Ctrl+Alt+Mod+Shift+WheelScrollDown   { focus-column-right; }
+    Ctrl+Alt+Mod+Shift+WheelScrollUp     { focus-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown       { move-column-right; }
+    Mod+Ctrl+Shift+WheelScrollUp         { move-column-left; }
+
+    Ctrl+Alt+Mod+1                       { focus-workspace 1; }
+    Ctrl+Alt+Mod+2                       { focus-workspace 2; }
+    Ctrl+Alt+Mod+3                       { focus-workspace 3; }
+    Ctrl+Alt+Mod+4                       { focus-workspace 4; }
+    Ctrl+Alt+Mod+5                       { focus-workspace 5; }
+    Ctrl+Alt+Mod+6                       { focus-workspace 6; }
+    Ctrl+Alt+Mod+7                       { focus-workspace 7; }
+    Ctrl+Alt+Mod+8                       { focus-workspace 8; }
+    Ctrl+Alt+Mod+9                       { focus-workspace 9; }
+
+    Mod+Ctrl+1                           { move-column-to-workspace 1; }
+    Mod+Ctrl+2                           { move-column-to-workspace 2; }
+    Mod+Ctrl+3                           { move-column-to-workspace 3; }
+    Mod+Ctrl+4                           { move-column-to-workspace 4; }
+    Mod+Ctrl+5                           { move-column-to-workspace 5; }
+    Mod+Ctrl+6                           { move-column-to-workspace 6; }
+    Mod+Ctrl+7                           { move-column-to-workspace 7; }
+    Mod+Ctrl+8                           { move-column-to-workspace 8; }
+    Mod+Ctrl+9                           { move-column-to-workspace 9; }
+
+    Ctrl+Alt+Mod+Tab                     { focus-workspace-previous; }
+
+    // ─── Layout Controls ───
+    Mod+Ctrl+F                           { expand-column-to-available-width; }
+    Ctrl+Alt+Mod+Shift+C                 { center-column; }
+    Mod+Ctrl+C                           { center-visible-columns; }
+    Ctrl+Alt+Mod+Minus                   { set-column-width "-10%"; }
+    Ctrl+Alt+Mod+Equal                   { set-column-width "+10%"; }
+    Ctrl+Alt+Mod+BracketLeft             { set-column-width "-10%"; }
+    Ctrl+Alt+Mod+BracketRight            { set-column-width "+10%"; }
+    Ctrl+Alt+Mod+Shift+Minus             { set-window-height "-10%"; }
+    Ctrl+Alt+Mod+Shift+Equal             { set-window-height "+10%"; }
+    Mod+Shift+BracketLeft                { set-window-height "-10%"; }
+    Mod+Shift+BracketRight               { set-window-height "+10%"; }
+
+    // ─── Modes ───
+    Ctrl+Alt+Mod+T                       { toggle-window-floating; }
+    Ctrl+Alt+Mod+F                       { maximize-column; }
+    Ctrl+Alt+Mod+Shift+F                 { fullscreen-window; }
+    Ctrl+Alt+Mod+W                       { toggle-column-tabbed-display; }
+
+    // ─── Screenshots ───
+    Ctrl+Shift+1                         { screenshot; }
+    Ctrl+Shift+2                         { screenshot-screen; }
+    Ctrl+Shift+3                         { screenshot-window; }
+    Mod+Shift+S                          hotkey-overlay-title="Screenshot Area to Clipboard" { screenshot; }
+    Ctrl+Alt+Mod+Shift+S                 hotkey-overlay-title="Screenshot Area to Clipboard" { screenshot; }
+
+    // ─── Session / Power Menu ───
+    Ctrl+Alt+Mod+Escape                  hotkey-overlay-title="Session Menu: noctalia" { spawn-sh "qs -c noctalia-shell ipc call sessionMenu toggle"; }
+
+    // ─── Emergency Escape (kept on physical Super key) ───
+    Mod+Escape                           allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+
+    // ─── Exit / Power ───
+    Ctrl+Alt+Delete                      { quit; }
+    Ctrl+Alt+Mod+Shift+P                 { power-off-monitors; }
+    Ctrl+Alt+Mod+O                       repeat=false { toggle-overview; }
+}

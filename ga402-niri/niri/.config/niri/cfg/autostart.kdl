@@ -1,0 +1,5 @@
+// ────────────── Startup Applications ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Miscellaneous#spawn-sh-at-startup
+
+    spawn-sh-at-startup "systemctl --user start noctalia-shell"
+    spawn-sh-at-startup "swayidle -w before-sleep 'qs -c noctalia-shell ipc call lockScreen lock' lock 'qs -c noctalia-shell ipc call lockScreen lock'"

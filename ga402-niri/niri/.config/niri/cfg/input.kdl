@@ -1,0 +1,27 @@
+// ────────────── Input Configuration ──────────────
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Input
+
+input {
+    keyboard {
+        xkb {
+            // Capslock remapping is now handled by keyd (see ~/dotfiles/keyd).
+            // Keep xkb layout options only.
+            layout "us,ru"
+            options "grp:win_space_toggle"
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        //natural-scroll
+    }
+
+    mouse {
+        //accel-profile "flat"
+        //accel-speed 0.0
+    }
+
+    focus-follows-mouse
+    workspace-auto-back-and-forth
+}

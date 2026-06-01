@@ -1,0 +1,5 @@
+# theme.lua is a machine-local symlink into omarchy's current theme
+# (~/.config/omarchy/current/theme/neovim.lua) — it's per-machine runtime
+# state, not a portable dotfile, and stow refuses to deploy absolute
+# symlinks. Each machine provides its own theme.lua locally.
+theme\.lua

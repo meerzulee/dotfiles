@@ -1,0 +1,21 @@
+// ────────────── Output Configuration ──────────────
+// You can run `niri msg outputs` to get the correct name for your displays.
+// You will have to remove "/-" and edit it before it takes effect.
+// https://github.com/YaLTeR/niri/wiki/Configuration:-Outputs
+
+// External monitor on TOP. Keyed to make/model/serial so this config
+// only ever applies to THIS Acer unit, on any port it lands on.
+output "Acer Technologies QG241Y 5122041F13W01" {
+    mode "1920x1080@75.000"
+    scale 1.0
+    position x=0 y=0
+}
+
+// Laptop panel on the BOTTOM, centered under the monitor.
+// 1706 wide (2560/1.5) centered under 1920 -> x=(1920-1706)/2=107.
+// y=1080 places it directly below the monitor's bottom edge.
+output "BOE 0x0A1D Unknown" {
+    mode "2560x1600@120.000"
+    scale 1.5
+    position x=107 y=1080
+}

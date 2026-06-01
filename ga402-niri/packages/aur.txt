@@ -1,0 +1,3 @@
+llmfit-bin
+lmstudio-bin
+zesh
